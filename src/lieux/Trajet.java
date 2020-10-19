@@ -32,21 +32,22 @@ public class Trajet {
     }
 
     public boolean estCoherent() {
-    	
-        throw new UnsupportedOperationException();
+    	for (Etape e : sesEtapes ) 
+       // throw new UnsupportedOperationException();
     }
 
     public Heure hArrivee() throws ErreurTrajet {
-        throw new UnsupportedOperationException();
+       return sesEtapes[sesEtapes.length-1].hArrivee();
+    	// throw new UnsupportedOperationException();
     }
 
     public Heure duree() throws ErreurTrajet {
-        throw new UnsupportedOperationException();
+        return dateDepart.moins(arrivee());
     }
 
     public Heure attente() throws ErreurTrajet {
-        throw new UnsupportedOperationException();
-    }
+        return 
+ }
 
     public int nbChgt() throws ErreurTrajet {
         throw new UnsupportedOperationException();

@@ -34,6 +34,15 @@ public class Heure implements Comparable<Heure> {
         return new Heure(h2, m2);
     }
 
+    public Heure moins(Heure h)  throws ErreurHeure {
+        int h2 = heure, m2 = minutes;
+        h2 -= h.heure;
+        m2 -= h.minutes;
+        if (m2 > 59) { h2++; m2 -= 60; }
+        if (h2 > 23) { throw new ErreurHeure("Changement de jour"); }
+        return new Heure(h2, m2);
+    }
+    
     public int compareTo(Heure h) {
         if (heure < h.heure) return -1;
         else if (heure > h.heure) return +1;

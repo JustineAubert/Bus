@@ -18,15 +18,12 @@ public class EnBus extends MoyenTransport {
 			// TODO Auto-generated catch block
 			throw new ErreurTrajet();
 		}
-       
-    	//throw new UnsupportedOperationException();
     }
 
     public Heure duree(Lieu l1, Lieu l2, Heure dep) throws ErreurTrajet {
     	Arret a1 = (Arret) l1;
     	Arret a2 = (Arret) l2;
    	 	return saLigne.dureeEnBus(a1,a2);
-       //throw new UnsupportedOperationException();
     }
 
     public boolean estPossible(Lieu l1, Lieu l2, Heure dep) {
@@ -35,7 +32,5 @@ public class EnBus extends MoyenTransport {
     	 
     		if (i1 != -1 && i2 != -1 && i1<i2 ){
     				return true;
-    		//};
-       //throw new UnsupportedOperationException();
     }else return false;
 }}
