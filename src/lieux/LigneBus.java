@@ -66,6 +66,21 @@ public class LigneBus {
     }
 
     public Heure attente(Arret a, Heure h) throws ErreurTrajet {
-        throw new UnsupportedOperationException();
+    	Heure heure;
+        try {
+            heure = sesDeparts[0].add(dureeEnBus(sesArrets.get(0), a));
+
+            int i = 0;
+            while((sesDeparts[i].add(dureeEnBus(sesArrets.get(0), a)).compareTo(h) == -1)){
+                heure = sesDeparts[i+1].add(dureeEnBus(sesArrets.get(0), a));
+                i++;
+            }
+            //System.out.println(heure);
+            return h.delaiAvant(heure);
+
+        } catch (ErreurHeure e) {
+            throw new ErreurTrajet("On a une erreur d'attente de la ligne bus avec : "+ a + " \n");
+        }
+    
     }
 }

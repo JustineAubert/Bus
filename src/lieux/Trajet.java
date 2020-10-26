@@ -32,30 +32,63 @@ public class Trajet {
     }
 
     public boolean estCoherent() {
-    	for (Etape e : sesEtapes ) 
-       // throw new UnsupportedOperationException();
+    	for (Etape e : sesEtapes ) {
+    		if (e.estPossible()) {
+    			return true;
+    		}
+    	}
+		return false;
     }
 
     public Heure hArrivee() throws ErreurTrajet {
-       return sesEtapes[sesEtapes.length-1].hArrivee();
-    	// throw new UnsupportedOperationException();
+       return sesEtapes.get(sesEtapes.size()-1).hArrivee();
     }
 
     public Heure duree() throws ErreurTrajet {
-        return dateDepart.moins(arrivee());
+    	Heure duree = new Heure();
+        for(Etape etape : sesEtapes){
+            try {
+                duree = duree.add(etape.duree());
+            }catch (ErreurHeure e){
+                e.getMessage();
+            }
+        }
+        return duree;
     }
 
     public Heure attente() throws ErreurTrajet {
-        return 
+    	Heure attente = new Heure();
+    for(Etape etape : sesEtapes){
+        try {
+            attente = attente.add(etape.attente());
+        }catch (ErreurHeure e){
+            e.getMessage();
+        }
+    }
+    return attente;
  }
 
     public int nbChgt() throws ErreurTrajet {
-        throw new UnsupportedOperationException();
+    	int nbChgt = 0;
+        for(int i=0; i<sesEtapes.size()-1; i++){
+            if(!sesEtapes.get(i).moyen().toString().equals(sesEtapes.get(i+1).moyen().toString())){
+                nbChgt++;
+            }
+        }
+        return nbChgt;
     }
 
-    public static Trajet meilleur(Collection<Trajet> col, Comparateur comp)
-    throws ErreurTrajet {
-        throw new UnsupportedOperationException();
+    public static Trajet meilleur(Collection<Trajet> col, Comparateur comp) {
+    Trajet meilleur = null;
+    for(Trajet trajet : col){
+        if(meilleur == null){
+            meilleur = trajet;
+        }
+        if(comp.compare(meilleur, trajet)<0){
+            meilleur = trajet;
+        }
     }
+    return meilleur;
+}
 
 }

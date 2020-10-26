@@ -8,15 +8,16 @@ public class APieds extends MoyenTransport {
     public String toString() { return "A Pieds"; }
 
     public boolean estPossible(Lieu l1, Lieu l2, Heure dep) {
-    	return l1.estVoisin(l2);
+    	if (l1.estVoisin(l2)||l1==l2)
+    	{return true;}
+		return false;
+    	
        // throw new UnsupportedOperationException();
     }
 
     public Heure attente(Lieu l1, Lieu l2, Heure dep) throws ErreurTrajet {
         Heure h=new Heure();
         return h;
-        
-    	//throw new UnsupportedOperationException();
     }
 
     // duree du voyage de l1 a l2, hors temps d'attente, a l'heure dep selon

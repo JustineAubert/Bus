@@ -40,7 +40,7 @@ public class Etape {
     }
 
     public Heure duree() throws ErreurTrajet, ErreurHeure {
-    	return hdep.moins(hArrivee());
+    	return moyen.duree(dep,arr,hdep);
     }
 
     public Heure attente() throws ErreurTrajet {
